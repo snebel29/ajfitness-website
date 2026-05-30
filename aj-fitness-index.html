@@ -3,19 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AJ Fitness — Forge Your Edge</title>
+<title>AJ Fitness — Functional Bodybuilding</title>
+<link rel="icon" type="image/png" href="ajfitness-logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --acid: #C8F400;
-    --black: #0A0A0A;
-    --dark: #111111;
-    --card: #181818;
+    --acid: #D11A1A;      /* crimson — logo red */
+    --acid-bright: #E63232;
+    --black: #080808;
+    --dark: #101010;
+    --card: #171717;
     --mid: #2A2A2A;
-    --muted: #888;
-    --white: #F5F5F0;
+    --muted: #8A8A8A;
+    --white: #F2F0EB;     /* cream — logo circle */
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -66,6 +68,7 @@
     border-bottom: 1px solid rgba(255,255,255,0.04);
   }
   .nav-logo {
+    display: flex; align-items: center; gap: 0.7rem;
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 900;
     font-size: 1.6rem;
@@ -73,6 +76,18 @@
     text-transform: uppercase;
     color: var(--white);
     text-decoration: none;
+  }
+  .nav-logo img {
+    height: 44px; width: auto;
+    display: block;
+  }
+  .nav-logo .brand-text { line-height: 0.85; }
+  .nav-logo .brand-text small {
+    display: block;
+    font-size: 0.45em;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    color: var(--acid);
   }
   .nav-logo span { color: var(--acid); }
   .nav-links {
@@ -102,7 +117,7 @@
     transition: background 0.2s, transform 0.15s;
     clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
   }
-  .nav-cta:hover { background: #d4ff00; transform: translateY(-1px); }
+  .nav-cta:hover { background: #E63232; transform: translateY(-1px); }
 
   /* HERO */
   .hero {
@@ -118,8 +133,8 @@
     content: '';
     position: absolute; inset: 0;
     background: 
-      radial-gradient(ellipse 60% 80% at 80% 50%, rgba(200,244,0,0.06) 0%, transparent 70%),
-      radial-gradient(ellipse 40% 60% at 20% 80%, rgba(200,244,0,0.03) 0%, transparent 60%);
+      radial-gradient(ellipse 60% 80% at 80% 50%, rgba(209,26,26,0.06) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 60% at 20% 80%, rgba(209,26,26,0.03) 0%, transparent 60%);
     pointer-events: none;
   }
   .hero-noise {
@@ -131,8 +146,8 @@
   .hero-left { position: relative; z-index: 2; }
   .hero-tag {
     display: inline-flex; align-items: center; gap: 0.5rem;
-    background: rgba(200,244,0,0.1);
-    border: 1px solid rgba(200,244,0,0.25);
+    background: rgba(209,26,26,0.1);
+    border: 1px solid rgba(209,26,26,0.25);
     color: var(--acid);
     padding: 0.35rem 0.85rem;
     font-size: 0.72rem;
@@ -189,7 +204,7 @@
     transition: all 0.2s;
     clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
   }
-  .btn-primary:hover { background: #d4ff00; transform: translateY(-2px); }
+  .btn-primary:hover { background: #E63232; transform: translateY(-2px); }
   .btn-ghost {
     color: var(--white);
     text-decoration: none;
@@ -211,15 +226,34 @@
   }
   .hero-visual {
     position: relative;
-    width: 420px; height: 540px;
+    width: 440px;
+    display: flex; flex-direction: column; gap: 1.25rem;
+  }
+  .hero-visual .hero-img-box { height: 440px; }
+  .hero-stats-row {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem;
   }
   .hero-img-box {
     width: 100%; height: 100%;
-    background: var(--card);
+    background: radial-gradient(circle at 50% 45%, #1c1c1c 0%, #0c0c0c 80%);
     border: 1px solid var(--mid);
     overflow: hidden;
     clip-path: polygon(0 0, calc(100% - 24px) 0, 100% 24px, 100% 100%, 24px 100%, 0 calc(100% - 24px));
     display: flex; align-items: center; justify-content: center;
+    position: relative;
+  }
+  .hero-img-box::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at 50% 45%, rgba(209,26,26,0.12) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .hero-logo {
+    width: 100%; height: 100%;
+    object-fit: contain;
+    display: block;
+    position: relative; z-index: 1;
+    filter: drop-shadow(0 12px 40px rgba(0,0,0,0.6));
   }
   .hero-placeholder {
     width: 100%; height: 100%;
@@ -229,18 +263,15 @@
   }
   .silhouette {
     width: 160px; height: 320px;
-    background: rgba(200,244,0,0.08);
+    background: rgba(209,26,26,0.08);
     clip-path: polygon(40% 0%, 60% 0%, 70% 12%, 70% 30%, 85% 40%, 90% 60%, 75% 62%, 65% 45%, 65% 70%, 80% 100%, 60% 100%, 55% 75%, 45% 75%, 40% 100%, 20% 100%, 35% 70%, 35% 45%, 25% 62%, 10% 60%, 15% 40%, 30% 30%, 30% 12%);
   }
   .hero-stat-card {
-    position: absolute;
     background: rgba(10,10,10,0.9);
-    border: 1px solid rgba(200,244,0,0.2);
-    padding: 0.85rem 1.2rem;
+    border: 1px solid rgba(209,26,26,0.2);
+    padding: 0.9rem 1.2rem;
     backdrop-filter: blur(8px);
   }
-  .hero-stat-card.card1 { bottom: 40px; left: -40px; }
-  .hero-stat-card.card2 { top: 60px; right: -30px; }
   .stat-num {
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 900;
@@ -260,7 +291,7 @@
     position: absolute;
     top: 0; bottom: 0; right: -2rem;
     width: 1px;
-    background: linear-gradient(to bottom, transparent, rgba(200,244,0,0.3) 30%, rgba(200,244,0,0.3) 70%, transparent);
+    background: linear-gradient(to bottom, transparent, rgba(209,26,26,0.3) 30%, rgba(209,26,26,0.3) 70%, transparent);
   }
 
   /* TICKER */
@@ -445,7 +476,7 @@
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 900;
     font-size: 3.5rem;
-    color: rgba(200,244,0,0.12);
+    color: rgba(209,26,26,0.12);
     line-height: 1;
     margin-bottom: 0.75rem;
   }
@@ -483,7 +514,7 @@
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 900;
     font-size: 8rem;
-    color: rgba(200,244,0,0.06);
+    color: rgba(209,26,26,0.06);
     position: absolute;
     top: -1rem; left: 1.5rem;
     line-height: 1;
@@ -514,7 +545,7 @@
     width: 38px; height: 38px;
     border-radius: 50%;
     background: var(--mid);
-    border: 2px solid rgba(200,244,0,0.3);
+    border: 2px solid rgba(209,26,26,0.3);
     display: flex; align-items: center; justify-content: center;
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 800;
@@ -608,8 +639,8 @@
   .price-features li::before {
     content: '';
     width: 14px; height: 14px;
-    background: rgba(200,244,0,0.15);
-    border: 1px solid rgba(200,244,0,0.4);
+    background: rgba(209,26,26,0.15);
+    border: 1px solid rgba(209,26,26,0.4);
     flex-shrink: 0;
     display: flex; align-items: center; justify-content: center;
     clip-path: polygon(14% 44%, 0 57%, 50% 100%, 100% 16%, 86% 0%, 50% 72%);
@@ -635,7 +666,7 @@
     color: var(--black);
     border-color: var(--acid);
   }
-  .btn-plan.active:hover { background: #d4ff00; }
+  .btn-plan.active:hover { background: #E63232; }
 
   /* CTA SECTION */
   .cta-section {
@@ -693,7 +724,8 @@
     grid-template-columns: 2fr 1fr 1fr 1fr;
     gap: 3rem;
   }
-  .footer-brand .nav-logo { font-size: 1.8rem; display: inline-block; margin-bottom: 1rem; }
+  .footer-brand .nav-logo { font-size: 1.8rem; margin-bottom: 1rem; }
+  .footer-brand .nav-logo img { height: 52px; }
   .footer-desc {
     font-size: 0.85rem;
     color: var(--muted);
@@ -768,7 +800,10 @@
 
 <!-- NAV -->
 <nav>
-  <a href="#" class="nav-logo">AJ<span>.</span>Fitness</a>
+  <a href="#" class="nav-logo">
+    <img src="ajfitness-logo.png" alt="AJ Fitness logo">
+    <span class="brand-text">AJ Fitness<small>Functional Bodybuilding</small></span>
+  </a>
   <ul class="nav-links">
     <li><a href="#programs">Programs</a></li>
     <li><a href="#features">Why AJ</a></li>
@@ -782,7 +817,7 @@
 <section class="hero">
   <div class="hero-noise"></div>
   <div class="hero-left">
-    <div class="hero-tag">Est. 2019 — Dublin, Ireland</div>
+    <div class="hero-tag">Functional Bodybuilding — Dublin, Ireland</div>
     <h1 class="hero-h1">
       Forge<br>Your<br><em>Edge.</em>
     </h1>
@@ -795,24 +830,17 @@
   <div class="hero-right">
     <div class="hero-visual">
       <div class="hero-img-box">
-        <div class="hero-placeholder">
-          <svg width="160" height="280" viewBox="0 0 160 280" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <ellipse cx="80" cy="30" rx="22" ry="22" fill="rgba(200,244,0,0.15)" stroke="rgba(200,244,0,0.3)" stroke-width="1"/>
-            <path d="M58 70 L45 130 L30 125 L25 140 L55 148 L65 105 L80 125 L95 105 L105 148 L135 140 L130 125 L115 130 L102 70 Z" fill="rgba(200,244,0,0.12)" stroke="rgba(200,244,0,0.25)" stroke-width="1" stroke-linejoin="round"/>
-            <path d="M55 148 L40 220 L55 222 L70 175 L80 210 L90 175 L105 222 L120 220 L105 148 Z" fill="rgba(200,244,0,0.1)" stroke="rgba(200,244,0,0.2)" stroke-width="1" stroke-linejoin="round"/>
-            <path d="M30 95 L10 115 L18 122 L42 108 Z" fill="rgba(200,244,0,0.1)" stroke="rgba(200,244,0,0.2)" stroke-width="1"/>
-            <path d="M130 95 L150 115 L142 122 L118 108 Z" fill="rgba(200,244,0,0.1)" stroke="rgba(200,244,0,0.2)" stroke-width="1"/>
-          </svg>
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1rem;letter-spacing:0.2em;color:rgba(200,244,0,0.3);text-transform:uppercase;">Your Photo Here</div>
+        <img src="ajfitness-logo.png" alt="AJ Fitness — Functional Bodybuilding" class="hero-logo">
+      </div>
+      <div class="hero-stats-row">
+        <div class="hero-stat-card reveal">
+          <div class="stat-num">2,400+</div>
+          <div class="stat-label">Members Trained</div>
         </div>
-      </div>
-      <div class="hero-stat-card card1 reveal">
-        <div class="stat-num">2,400+</div>
-        <div class="stat-label">Members Trained</div>
-      </div>
-      <div class="hero-stat-card card2 reveal">
-        <div class="stat-num">97%</div>
-        <div class="stat-label">Goal Achievement</div>
+        <div class="hero-stat-card reveal">
+          <div class="stat-num">97%</div>
+          <div class="stat-label">Goal Achievement</div>
+        </div>
       </div>
     </div>
     <div class="hero-line"></div>
@@ -1046,8 +1074,11 @@
 <!-- FOOTER -->
 <footer>
   <div class="footer-brand">
-    <a href="#" class="nav-logo">AJ<span>.</span>Fitness</a>
-    <p class="footer-desc">Science-backed coaching for people who are serious about change. Based in Dublin, training the world.</p>
+    <a href="#" class="nav-logo">
+      <img src="ajfitness-logo.png" alt="AJ Fitness logo">
+      <span class="brand-text">AJ Fitness<small>Functional Bodybuilding</small></span>
+    </a>
+    <p class="footer-desc">Functional bodybuilding for people who are serious about change. Based in Dublin, training the world.</p>
     <div class="footer-social">
       <a href="#" class="social-btn">IG</a>
       <a href="#" class="social-btn">TK</a>
@@ -1123,7 +1154,7 @@
   // Nav scroll effect
   const nav = document.querySelector('nav');
   window.addEventListener('scroll', () => {
-    nav.style.borderBottomColor = window.scrollY > 60 ? 'rgba(200,244,0,0.1)' : 'rgba(255,255,255,0.04)';
+    nav.style.borderBottomColor = window.scrollY > 60 ? 'rgba(209,26,26,0.1)' : 'rgba(255,255,255,0.04)';
   });
 </script>
 </body>
