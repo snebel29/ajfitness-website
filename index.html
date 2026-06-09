@@ -791,6 +791,177 @@
   .reveal.visible {
     opacity: 1; transform: translateY(0);
   }
+
+  /* HAMBURGER */
+  .nav-hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 36px; height: 36px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 4px;
+    z-index: 200;
+  }
+  .nav-hamburger span {
+    display: block;
+    width: 100%; height: 2px;
+    background: var(--white);
+    transition: transform 0.25s ease, opacity 0.25s ease;
+    transform-origin: center;
+  }
+  .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+  .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* MOBILE NAV OVERLAY */
+  .nav-mobile {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(8,8,8,0.97);
+    z-index: 150;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2.5rem;
+    padding: 5rem 2rem 2rem;
+  }
+  .nav-mobile.open { display: flex; }
+  .nav-mobile a {
+    color: var(--white);
+    text-decoration: none;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: color 0.2s;
+  }
+  .nav-mobile a:hover { color: var(--acid); }
+  .nav-mobile .nav-cta {
+    font-size: 1.1rem;
+    padding: 0.85rem 2.5rem;
+    margin-top: 1rem;
+  }
+
+  /* =====================
+     RESPONSIVE BREAKPOINTS
+     ===================== */
+
+  /* Tablet (≤1024px) */
+  @media (max-width: 1024px) {
+    nav { padding: 1.25rem 2rem; }
+    .hero { padding: 7rem 2rem 4rem; gap: 2rem; }
+    .hero-visual { width: 340px; }
+    .hero-visual .hero-img-box { height: 340px; }
+    section { padding: 5rem 2rem; }
+    .features-left { padding: 5rem 2rem; }
+    footer { padding: 3rem 2rem; grid-template-columns: 2fr 1fr 1fr; }
+    .footer-col:last-child { grid-column: 2; }
+    .footer-bottom { padding: 1.5rem 2rem; }
+    .cta-section { padding: 4rem 2rem; }
+    .stat-item { padding: 2rem 1.5rem; }
+  }
+
+  /* Mobile (≤768px) */
+  @media (max-width: 768px) {
+    /* Hide desktop nav elements, show hamburger */
+    .nav-links, nav > .nav-cta { display: none; }
+    .nav-hamburger { display: flex; }
+    nav { padding: 1rem 1.25rem; }
+    .nav-logo { font-size: 1.3rem; }
+    .nav-logo img { height: 36px; }
+
+    /* Cursor: hide on touch */
+    .cursor, .cursor-ring { display: none; }
+    body { cursor: auto; }
+
+    /* Hero: stack vertically */
+    .hero {
+      grid-template-columns: 1fr;
+      padding: 6rem 1.25rem 3rem;
+      min-height: auto;
+      gap: 3rem;
+    }
+    .hero-line { display: none; }
+    .hero-h1 { font-size: clamp(3.5rem, 16vw, 5rem); }
+    .hero-sub { max-width: 100%; font-size: 0.95rem; }
+    .hero-right { justify-content: flex-start; }
+    .hero-visual { width: 100%; }
+    .hero-visual .hero-img-box { height: 260px; }
+    .hero-actions { flex-wrap: wrap; gap: 1rem; }
+
+    /* Stats bar: 2 columns */
+    .stats-bar { grid-template-columns: repeat(2, 1fr); }
+    .stat-item { border-bottom: 1px solid var(--mid); padding: 1.5rem 1.25rem; }
+    .stat-item:nth-child(2) { border-right: none; }
+    .stat-item:nth-child(3), .stat-item:nth-child(4) { border-bottom: none; }
+    .stat-big { font-size: 2.5rem; }
+
+    /* Sections */
+    section { padding: 4rem 1.25rem; }
+
+    /* Programs: single column */
+    .programs-grid { grid-template-columns: 1fr; }
+    .programs-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    .program-card { padding: 2rem 1.5rem; cursor: auto; }
+
+    /* Features: stack */
+    #features { grid-template-columns: 1fr; }
+    .features-left { padding: 4rem 1.25rem 2rem; }
+    .features-right { grid-template-columns: 1fr 1fr; }
+    .feature-tile { padding: 1.75rem 1.25rem; }
+
+    /* Testimonials: single column */
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .testi-card { padding: 2rem 1.5rem; }
+
+    /* Pricing: single column */
+    .pricing-grid {
+      grid-template-columns: 1fr;
+      max-width: 400px;
+    }
+    .price-card { padding: 2rem 1.5rem; }
+
+    /* CTA section */
+    .cta-section {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 2rem;
+      padding: 3.5rem 1.25rem;
+    }
+    .cta-section::before { font-size: 10rem; right: -0.5rem; }
+    .cta-text h2 { font-size: clamp(2rem, 10vw, 3rem); }
+
+    /* Footer: single column */
+    footer {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      padding: 3rem 1.25rem;
+    }
+    .footer-brand .nav-logo { font-size: 1.4rem; }
+    .footer-brand .nav-logo img { height: 40px; }
+    .footer-bottom {
+      flex-direction: column;
+      gap: 0.5rem;
+      text-align: center;
+      padding: 1.25rem;
+    }
+
+    /* Section heading size on mobile */
+    .section-h2 { font-size: clamp(2.2rem, 9vw, 3rem); }
+  }
+
+  /* Small mobile (≤480px) */
+  @media (max-width: 480px) {
+    .hero-h1 { font-size: clamp(3rem, 18vw, 4rem); }
+    .features-right { grid-template-columns: 1fr; }
+    .pricing-grid { max-width: 100%; }
+    .hero-stats-row { grid-template-columns: 1fr 1fr; }
+  }
 </style>
 </head>
 <body>
@@ -811,7 +982,19 @@
     <li><a href="#pricing">Pricing</a></li>
   </ul>
   <a href="#pricing" class="nav-cta">Get Started</a>
+  <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- MOBILE NAV -->
+<div class="nav-mobile" id="mobileNav" role="dialog" aria-label="Mobile navigation">
+  <a href="#programs" class="mobile-nav-link">Programs</a>
+  <a href="#features" class="mobile-nav-link">Why AJ</a>
+  <a href="#testimonials" class="mobile-nav-link">Results</a>
+  <a href="#pricing" class="mobile-nav-link">Pricing</a>
+  <a href="#pricing" class="nav-cta">Get Started</a>
+</div>
 
 <!-- HERO -->
 <section class="hero">
@@ -1120,21 +1303,45 @@
 </div>
 
 <script>
-  // Custom cursor
+  // Disable custom cursor on touch devices
+  const isTouch = window.matchMedia('(hover: none)').matches;
+
+  // Custom cursor (desktop only)
   const cursor = document.getElementById('cursor');
   const ring = document.getElementById('cursorRing');
-  let mx = 0, my = 0, rx = 0, ry = 0;
-  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
-  function animCursor() {
-    cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
-    rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
-    ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
-    requestAnimationFrame(animCursor);
+  if (!isTouch) {
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+    function animCursor() {
+      cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
+      rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
+      ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+      requestAnimationFrame(animCursor);
+    }
+    animCursor();
+    document.querySelectorAll('a, button, .program-card, .feature-tile, .price-card').forEach(el => {
+      el.addEventListener('mouseenter', () => { cursor.style.width='20px'; cursor.style.height='20px'; ring.style.width='60px'; ring.style.height='60px'; ring.style.opacity='0.3'; });
+      el.addEventListener('mouseleave', () => { cursor.style.width='12px'; cursor.style.height='12px'; ring.style.width='36px'; ring.style.height='36px'; ring.style.opacity='0.5'; });
+    });
   }
-  animCursor();
-  document.querySelectorAll('a, button, .program-card, .feature-tile, .price-card').forEach(el => {
-    el.addEventListener('mouseenter', () => { cursor.style.width='20px'; cursor.style.height='20px'; ring.style.width='60px'; ring.style.height='60px'; ring.style.opacity='0.3'; });
-    el.addEventListener('mouseleave', () => { cursor.style.width='12px'; cursor.style.height='12px'; ring.style.width='36px'; ring.style.height='36px'; ring.style.opacity='0.5'; });
+
+  // Hamburger / mobile nav
+  const hamburger = document.getElementById('hamburger');
+  const mobileNav = document.getElementById('mobileNav');
+  hamburger.addEventListener('click', () => {
+    const open = mobileNav.classList.toggle('open');
+    hamburger.classList.toggle('open', open);
+    hamburger.setAttribute('aria-expanded', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  // Close mobile nav when a link is clicked
+  mobileNav.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      mobileNav.classList.remove('open');
+      hamburger.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    });
   });
 
   // Scroll reveal
