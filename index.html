@@ -495,16 +495,35 @@
   }
 
   /* TESTIMONIALS */
-  #testimonials { background: var(--dark); }
+  #testimonials { background: var(--dark); overflow: hidden; }
   .testimonials-header { margin-bottom: 3.5rem; }
-  .testimonials-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5px;
-    background: var(--mid);
+  /* Auto-scrolling carousel */
+  .testi-carousel {
+    position: relative;
+    overflow: hidden;
+    /* fade the left/right edges so cards slide in/out smoothly */
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+    mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+  }
+  .testi-track {
+    display: flex;
+    width: max-content;
+    gap: 1.5rem;
+    animation: testiScroll 40s linear infinite;
+  }
+  .testi-carousel:hover .testi-track { animation-play-state: paused; }
+  @keyframes testiScroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(calc(-50% - 0.75rem)); } /* shift one full set (+ half the gap) */
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .testi-track { animation: none; flex-wrap: wrap; justify-content: center; }
   }
   .testi-card {
+    flex: 0 0 auto;
+    width: 380px;
     background: var(--card);
+    border: 1px solid var(--mid);
     padding: 2.5rem;
     position: relative;
     overflow: hidden;
@@ -1071,9 +1090,8 @@
     .features-right { grid-template-columns: 1fr 1fr; }
     .feature-tile { padding: 1.75rem 1.25rem; }
 
-    /* Testimonials: single column */
-    .testimonials-grid { grid-template-columns: 1fr; }
-    .testi-card { padding: 2rem 1.5rem; }
+    /* Testimonials: narrower cards in the carousel */
+    .testi-card { width: 300px; padding: 2rem 1.5rem; }
 
     /* Coaches: single column */
     .coaches-grid { grid-template-columns: 1fr; }
@@ -1322,43 +1340,112 @@
     <div class="section-label">Testimonials</div>
     <h2 class="section-h2">Real People.<br>Real Results.</h2>
   </div>
-  <div class="testimonials-grid reveal">
-    <div class="testi-card">
-      <div class="testi-stars">
-        <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
-      </div>
-      <p class="testi-text">"I've tried every programme out there. AJ's approach is the first one that actually made sense for my life. Down 14kg in 16 weeks and stronger than I've ever been."</p>
-      <div class="testi-author">
-        <div class="testi-avatar">SM</div>
-        <div>
-          <div class="testi-name">Sarah Murphy</div>
-          <div class="testi-role">Online Client, Dublin</div>
+  <div class="testi-carousel reveal">
+    <div class="testi-track">
+      <!-- Set 1 -->
+      <div class="testi-card">
+        <div class="testi-stars">
+          <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
+        </div>
+        <p class="testi-text">"I've tried every programme out there. AJ's approach is the first one that actually made sense for my life. Down 14kg in 16 weeks and stronger than I've ever been."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">SM</div>
+          <div>
+            <div class="testi-name">Sarah Murphy</div>
+            <div class="testi-role">Online Client, Dublin</div>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="testi-card">
-      <div class="testi-stars">
-        <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
-      </div>
-      <p class="testi-text">"The attention to detail is unreal. AJ actually reads your check-ins and adjusts. My squat went from 80kg to 140kg in six months. I'm not the same person."</p>
-      <div class="testi-author">
-        <div class="testi-avatar">CK</div>
-        <div>
-          <div class="testi-name">Connor Kelly</div>
-          <div class="testi-role">Power & Strength Member</div>
+      <div class="testi-card">
+        <div class="testi-stars">
+          <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
+        </div>
+        <p class="testi-text">"The attention to detail is unreal. AJ actually reads your check-ins and adjusts. My squat went from 80kg to 140kg in six months. I'm not the same person."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">CK</div>
+          <div>
+            <div class="testi-name">Connor Kelly</div>
+            <div class="testi-role">1-on-1 PT Member</div>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="testi-card">
-      <div class="testi-stars">
-        <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
+      <div class="testi-card">
+        <div class="testi-stars">
+          <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
+        </div>
+        <p class="testi-text">"As a mum of three I thought I'd never find time to get fit again. AJ built me a programme that fits around my schedule. Best investment I've ever made in myself."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">LB</div>
+          <div>
+            <div class="testi-name">Laura Burke</div>
+            <div class="testi-role">Online Coaching Member</div>
+          </div>
+        </div>
       </div>
-      <p class="testi-text">"As a mum of three I thought I'd never find time to get fit again. AJ built me a programme that fits around my schedule. Best investment I've ever made in myself."</p>
-      <div class="testi-author">
-        <div class="testi-avatar">LB</div>
-        <div>
-          <div class="testi-name">Laura Burke</div>
-          <div class="testi-role">Metabolic Shred Member</div>
+      <div class="testi-card">
+        <div class="testi-stars">
+          <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
+        </div>
+        <p class="testi-text">"I thought I knew how to train after years of experience. AJ took me to the next level — sharpening my technique and getting results I didn't think were possible."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">SN</div>
+          <div>
+            <div class="testi-name">Sven Nebel</div>
+            <div class="testi-role">Hybrid Member</div>
+          </div>
+        </div>
+      </div>
+      <!-- Set 2 (duplicate for seamless loop) -->
+      <div class="testi-card" aria-hidden="true">
+        <div class="testi-stars">
+          <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
+        </div>
+        <p class="testi-text">"I've tried every programme out there. AJ's approach is the first one that actually made sense for my life. Down 14kg in 16 weeks and stronger than I've ever been."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">SM</div>
+          <div>
+            <div class="testi-name">Sarah Murphy</div>
+            <div class="testi-role">Online Client, Dublin</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card" aria-hidden="true">
+        <div class="testi-stars">
+          <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
+        </div>
+        <p class="testi-text">"The attention to detail is unreal. AJ actually reads your check-ins and adjusts. My squat went from 80kg to 140kg in six months. I'm not the same person."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">CK</div>
+          <div>
+            <div class="testi-name">Connor Kelly</div>
+            <div class="testi-role">1-on-1 PT Member</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card" aria-hidden="true">
+        <div class="testi-stars">
+          <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
+        </div>
+        <p class="testi-text">"As a mum of three I thought I'd never find time to get fit again. AJ built me a programme that fits around my schedule. Best investment I've ever made in myself."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">LB</div>
+          <div>
+            <div class="testi-name">Laura Burke</div>
+            <div class="testi-role">Online Coaching Member</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card" aria-hidden="true">
+        <div class="testi-stars">
+          <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
+        </div>
+        <p class="testi-text">"I thought I knew how to train after years of experience. AJ took me to the next level — sharpening my technique and getting results I didn't think were possible."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">SN</div>
+          <div>
+            <div class="testi-name">Sven Nebel</div>
+            <div class="testi-role">Hybrid Member</div>
+          </div>
         </div>
       </div>
     </div>
