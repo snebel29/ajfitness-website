@@ -715,6 +715,68 @@
   }
   .btn-cta-dark:hover { background: #111; transform: translateY(-2px); }
 
+  /* CONTACT */
+  #contact { background: var(--dark); }
+  .contact-header { text-align: center; margin-bottom: 3.5rem; }
+  .contact-header .section-label { justify-content: center; }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5px;
+    background: var(--mid);
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .contact-card {
+    background: var(--card);
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    color: var(--white);
+    display: flex; flex-direction: column;
+    transition: background 0.2s;
+    clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
+  }
+  .contact-card::before {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--acid);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+  .contact-card:hover { background: #1d1d1d; }
+  .contact-card:hover::before { transform: scaleX(1); }
+  .contact-icon { font-size: 2.2rem; margin-bottom: 1.25rem; display: block; }
+  .contact-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--acid);
+    margin-bottom: 0.6rem;
+  }
+  .contact-value {
+    font-size: 0.95rem;
+    color: rgba(245,245,240,0.85);
+    line-height: 1.6;
+    flex: 1;
+  }
+  .contact-cta {
+    margin-top: 1.25rem;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--white);
+    display: flex; align-items: center; gap: 0.5rem;
+    transition: color 0.2s;
+  }
+  .contact-card:hover .contact-cta { color: var(--acid); }
+
   /* FOOTER */
   footer {
     background: var(--dark);
@@ -926,6 +988,10 @@
     }
     .price-card { padding: 2rem 1.5rem; }
 
+    /* Contact: single column */
+    .contact-grid { grid-template-columns: 1fr; max-width: 400px; }
+    .contact-card { padding: 2rem 1.5rem; }
+
     /* CTA section */
     .cta-section {
       flex-direction: column;
@@ -980,6 +1046,7 @@
     <li><a href="#features">Why AJ</a></li>
     <li><a href="#testimonials">Results</a></li>
     <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#contact">Contact</a></li>
   </ul>
   <a href="#pricing" class="nav-cta">Get Started</a>
   <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
@@ -993,6 +1060,7 @@
   <a href="#features" class="mobile-nav-link">Why AJ</a>
   <a href="#testimonials" class="mobile-nav-link">Results</a>
   <a href="#pricing" class="mobile-nav-link">Pricing</a>
+  <a href="#contact" class="mobile-nav-link">Contact</a>
   <a href="#pricing" class="nav-cta">Get Started</a>
 </div>
 
@@ -1254,6 +1322,39 @@
   <a href="#pricing" class="btn-cta-dark">Claim Your Spot →</a>
 </div>
 
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-header">
+    <div class="section-label">Contact</div>
+    <h2 class="section-h2">Get in Touch.</h2>
+  </div>
+  <div class="contact-grid reveal">
+    <a class="contact-card" href="https://maps.google.com/?q=Unit+15,+Ballyboggan+Business+Centre,+Ballyboggan+Rd,+Cabra+West,+Dublin,+D11+T211" target="_blank" rel="noopener">
+      <span class="contact-icon">📍</span>
+      <div class="contact-label">Location</div>
+      <p class="contact-value">Unit 15, Ballyboggan Business Centre,<br>Ballyboggan Rd, Cabra West,<br>Dublin, D11 T211</p>
+      <span class="contact-cta">Open in Maps <span>→</span></span>
+    </a>
+    <a class="contact-card" href="mailto:antojordan75@gmail.com">
+      <span class="contact-icon">✉️</span>
+      <div class="contact-label">Email</div>
+      <p class="contact-value">antojordan75@gmail.com</p>
+      <span class="contact-cta">Send an Email <span>→</span></span>
+    </a>
+    <a class="contact-card" href="https://wa.me/353852376260" target="_blank" rel="noopener">
+      <span class="contact-icon" aria-hidden="true">
+        <svg viewBox="0 0 32 32" width="34" height="34" role="img" aria-label="WhatsApp">
+          <path fill="#25D366" d="M16.003 0h-.006C7.17 0 0 7.172 0 16c0 3.5 1.128 6.745 3.046 9.38L1.05 31.31l6.14-1.963A15.9 15.9 0 0 0 16.003 32C24.83 32 32 24.828 32 16S24.83 0 16.003 0z"/>
+          <path fill="#FFF" d="M25.314 22.594c-.386 1.09-1.92 1.994-3.142 2.258-.836.178-1.928.32-5.604-1.204-4.7-1.948-7.726-6.724-7.962-7.034-.226-.31-1.9-2.53-1.9-4.826s1.166-3.42 1.636-3.9c.386-.394.954-.574 1.5-.574.176 0 .336.01.48.016.43.018.646.044.93.724.354.852 1.214 2.954 1.318 3.172.106.218.212.514.064.824-.138.32-.26.452-.478.704-.218.252-.426.444-.644.714-.2.234-.426.486-.174.92.252.424 1.12 1.846 2.4 2.99 1.654 1.474 3 1.93 3.48 2.13.358.148.784.112 1.046-.166.332-.358.742-.95 1.16-1.534.296-.42.67-.472 1.062-.324.4.14 2.492 1.174 2.922 1.388.43.214.714.318.82.498.104.18.104 1.036-.282 2.126z"/>
+        </svg>
+      </span>
+      <div class="contact-label">WhatsApp</div>
+      <p class="contact-value">+353 85 237 6260</p>
+      <span class="contact-cta">Message Us <span>→</span></span>
+    </a>
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-brand">
@@ -1290,7 +1391,7 @@
   <div class="footer-col">
     <h4>Support</h4>
     <ul>
-      <li><a href="#">Contact</a></li>
+      <li><a href="#contact">Contact</a></li>
       <li><a href="#">FAQ</a></li>
       <li><a href="#">Privacy Policy</a></li>
       <li><a href="#">Terms</a></li>
