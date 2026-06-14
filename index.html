@@ -569,10 +569,10 @@
   .pricing-header .section-label { justify-content: center; }
   .pricing-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 1.5px;
     background: var(--mid);
-    max-width: 900px;
+    max-width: 1100px;
     margin: 0 auto;
   }
   .price-card {
@@ -598,6 +598,14 @@
     text-transform: uppercase;
     padding: 0.25rem 0.65rem;
     margin-bottom: 1.5rem;
+  }
+  .price-tier {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--acid);
+    margin-bottom: 0.5rem;
   }
   .price-name {
     font-family: 'Barlow Condensed', sans-serif;
@@ -926,6 +934,7 @@
     .footer-bottom { padding: 1.5rem 2rem; }
     .cta-section { padding: 4rem 2rem; }
     .stat-item { padding: 2rem 1.5rem; }
+    .pricing-grid { grid-template-columns: repeat(2, 1fr); max-width: 600px; }
   }
 
   /* Mobile (≤768px) */
@@ -1263,52 +1272,71 @@
   </div>
   <div class="pricing-grid reveal">
     <div class="price-card">
-      <div class="price-name">Starter</div>
+      <div class="price-tier">Tier 1</div>
+      <div class="price-name">Online Coaching</div>
       <div class="price-amount">
         <span class="price-currency">€</span>
-        <span class="price-num">49</span>
+        <span class="price-num">100</span>
       </div>
       <div class="price-period">per month</div>
       <ul class="price-features">
-        <li>1 custom programme</li>
-        <li>Nutrition basics guide</li>
-        <li>Video exercise library</li>
-        <li>Community access</li>
+        <li>Full use of online platform</li>
+        <li>Train in your own gym</li>
+        <li>Custom training programme</li>
+        <li>Track your progress online</li>
       </ul>
-      <a href="#" class="btn-plan">Get Started</a>
+      <a href="#contact" class="btn-plan">Get Started</a>
     </div>
     <div class="price-card featured">
       <div class="price-badge">Most Popular</div>
-      <div class="price-name">Elite</div>
+      <div class="price-tier">Tier 2</div>
+      <div class="price-name">Small Group PT</div>
       <div class="price-amount">
         <span class="price-currency">€</span>
-        <span class="price-num">129</span>
+        <span class="price-num">140</span>
       </div>
       <div class="price-period">per month</div>
       <ul class="price-features">
-        <li>Fully custom programme</li>
-        <li>Custom nutrition plan</li>
-        <li>Weekly check-ins</li>
-        <li>WhatsApp coach access</li>
-        <li>Monthly video call</li>
+        <li>Small group personal training</li>
+        <li>Coach-led sessions</li>
+        <li>Train with like-minded people</li>
+        <li>In-person guidance</li>
       </ul>
-      <a href="#" class="btn-plan active">Get Started</a>
+      <a href="#contact" class="btn-plan active">Get Started</a>
     </div>
     <div class="price-card">
-      <div class="price-name">1-on-1</div>
+      <div class="price-tier">Tier 3</div>
+      <div class="price-name">Hybrid</div>
       <div class="price-amount">
         <span class="price-currency">€</span>
-        <span class="price-num">299</span>
+        <span class="price-num">180</span>
       </div>
       <div class="price-period">per month</div>
       <ul class="price-features">
-        <li>Daily coach access</li>
-        <li>Dynamic plan adjustments</li>
-        <li>Biweekly video calls</li>
-        <li>Supplement guidance</li>
-        <li>Lifestyle coaching</li>
+        <li>Small group training</li>
+        <li>Gym access included</li>
+        <li>Full online coaching platform</li>
+        <li>Macros calculated by coaches</li>
+        <li>Weekly check-ins</li>
       </ul>
-      <a href="#" class="btn-plan">Get Started</a>
+      <a href="#contact" class="btn-plan">Get Started</a>
+    </div>
+    <div class="price-card">
+      <div class="price-tier">Tier 4</div>
+      <div class="price-name">1-on-1 PT</div>
+      <div class="price-amount">
+        <span class="price-currency">€</span>
+        <span class="price-num">360</span>
+      </div>
+      <div class="price-period">per month</div>
+      <ul class="price-features">
+        <li>Full coaching platform access</li>
+        <li>Nutrition package included</li>
+        <li>Personal training platform</li>
+        <li>1-on-1 with specialised coaches</li>
+        <li>2 sessions a week</li>
+      </ul>
+      <a href="#contact" class="btn-plan">Get Started</a>
     </div>
   </div>
 </section>
