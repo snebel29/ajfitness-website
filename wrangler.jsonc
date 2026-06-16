@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "aj-fitness-production",
+  "name": "aj-fitness-staging",
   "compatibility_date": "2026-06-16",
   "observability": {
     "enabled": true
