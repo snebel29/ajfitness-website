@@ -670,10 +670,10 @@
   .pricing-header .section-label { justify-content: center; }
   .pricing-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     gap: 1.5px;
     background: var(--mid);
-    max-width: 1100px;
+    max-width: 1350px;
     margin: 0 auto;
   }
   .price-card {
@@ -681,6 +681,8 @@
     padding: 2.5rem;
     position: relative;
     transition: background 0.2s;
+    display: flex;
+    flex-direction: column;
   }
   .price-card:hover { background: #1d1d1d; }
   .price-card.featured {
@@ -688,6 +690,17 @@
     outline: 2px solid var(--acid);
     outline-offset: -2px;
     z-index: 1;
+  }
+  .price-card--free {
+    border-left: 3px solid rgba(209,26,26,0.3);
+  }
+  .btn-plan--free {
+    border-color: rgba(209,26,26,0.4);
+    color: var(--acid);
+  }
+  .btn-plan--free:hover {
+    border-color: var(--acid);
+    background: rgba(209,26,26,0.08);
   }
   .price-badge {
     display: inline-block;
@@ -739,6 +752,7 @@
     list-style: none;
     margin-bottom: 2rem;
     display: flex; flex-direction: column; gap: 0.7rem;
+    flex: 1;
   }
   .price-features li {
     font-size: 0.88rem;
@@ -1038,7 +1052,7 @@
     .footer-bottom { padding: 1.5rem 2rem; }
     .cta-section { padding: 4rem 2rem; }
     .stat-item { padding: 2rem 1.5rem; }
-    .pricing-grid { grid-template-columns: repeat(2, 1fr); max-width: 600px; }
+    .pricing-grid { grid-template-columns: repeat(2, 1fr); max-width: 700px; }
   }
 
   /* Mobile (≤768px) */
@@ -1513,6 +1527,21 @@
     <h2 class="section-h2">Invest in<br>Yourself.</h2>
   </div>
   <div class="pricing-grid reveal">
+    <div class="price-card price-card--free">
+      <div class="price-tier">Try It</div>
+      <div class="price-name">Free Class</div>
+      <div class="price-amount">
+        <span class="price-num" style="font-size:2.8rem">FREE</span>
+      </div>
+      <div class="price-period">one-time trial</div>
+      <ul class="price-features">
+        <li>1 group class on us</li>
+        <li>Meet our coaches</li>
+        <li>No commitment</li>
+        <li>See if it's right for you</li>
+      </ul>
+      <a href="#contact" class="btn-plan btn-plan--free">Claim Free Class</a>
+    </div>
     <div class="price-card">
       <div class="price-tier">Tier 1</div>
       <div class="price-name">Online Coaching</div>
